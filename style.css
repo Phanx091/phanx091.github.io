@@ -180,12 +180,20 @@ footer hr {
   margin-left: auto;
   margin-right: auto;
 }
+.grid-5 {
+  float: right;
+  width:100%;
+  padding: 0 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @media screen and (min-width: 40em) {
   .grid-1 { width: 16.6666666%; }
   .grid-2 { width: 33.3333333%; }
   .grid-3 { width: 50%; }
   .grid-4 { width: 66.6666666%; }
+  .grid-5 { width: 50%; }
 
 
 }
@@ -233,7 +241,7 @@ footer hr {
 
 @media screen and (min-width: 40em) {
   .education {
-    width: 70%;
+    width: 100%;
   }
 }
 
