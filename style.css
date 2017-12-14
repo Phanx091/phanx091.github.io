@@ -1,6 +1,10 @@
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
+
+html {
+  font-size: 1em;
+}
  
 body {
   font: 100% sans-serif;
@@ -29,7 +33,9 @@ p {
   line-height: 1.8;
   margin-top: 0em;
 }
-
+.img-circle {
+    border-radius: 50%;
+}
 img {
   max-width: 100%;
   float: left; 
@@ -130,6 +136,7 @@ footer hr {
   width:92%;
   margin-right: auto;
   margin-left: auto;
+  height: 290px;
 }
 
 .row {
