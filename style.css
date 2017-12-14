@@ -17,7 +17,10 @@ h1, h2, h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
-
+.introduction {    
+  padding-top: 40px;
+  margin-left: 250px;
+}
 a {
   color: #3d6dbe;
   text-decoration: none;
@@ -98,6 +101,10 @@ section ul li, section ol li {
   line-height: 1.8;
 }
 
+section .skills ul li {
+  list-style: none;
+}
+
 footer {
   margin-bottom: 1em;
   color: #888;
@@ -166,9 +173,7 @@ footer hr {
 .grid-1,
 .grid-2,
 .grid-3,
-.grid-4,
-.grid-5,
-.grid-6 {
+.grid-4 {
   float: left;
   width:100%;
   padding: 0 1%;
@@ -181,8 +186,7 @@ footer hr {
   .grid-2 { width: 33.3333333%; }
   .grid-3 { width: 50%; }
   .grid-4 { width: 66.6666666%; }
-  .grid-5 { width: 83.3333333%; }
-  .grid-6 { width: 100%; }
+
 
 }
 
@@ -212,6 +216,11 @@ footer hr {
   }
 }
 
+/* Skills */
+.skills {
+  text-align: center;
+  list-style: none;
+}
 
 /* Education */
 .education {
@@ -243,45 +252,4 @@ footer hr {
 
 
 
-#contactDetails {
-	float: middle;
-}
-
-#contactDetails ul {
-	list-style-type: none;
-	font-size: 0.9em;
-	margin-top: 10px;
-}
-
-#contactDetails ul li {
-	margin-bottom: 3px;
-	color: #444;
-}
-
-#contactDetails ul li a, a[href^=tel] {
-	color: #444; 
-	text-decoration: none;
-	-webkit-transition: all .3s ease-in;
-	-moz-transition: all .3s ease-in;
-	-o-transition: all .3s ease-in;
-	-ms-transition: all .3s ease-in;
-	transition: all .3s ease-in;
-}
-
-#contactDetails ul li a:hover { 
-	color: #cf8a05;
-}
-.quickFade {
-    -webkit-animation-name: reset, fade-in;
-    -webkit-animation-duration: 2.5s;
-    -webkit-animation-timing-function: ease-in;
-	
-	-moz-animation-name: reset, fade-in;
-    -moz-animation-duration: 2.5s;
-    -moz-animation-timing-function: ease-in;
-	
-	animation-name: reset, fade-in;
-    animation-duration: 2.5s;
-    animation-timing-function: ease-in;
-}
 
