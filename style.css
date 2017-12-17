@@ -201,7 +201,6 @@ footer hr {
 
 /* Experience */
 .experience [class*="row"] {
-  border-bottom: dotted 1px #ccc;
   padding-top: 1em;
   padding-bottom: 1em;
 }
