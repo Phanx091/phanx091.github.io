@@ -5,7 +5,7 @@
 html {
   font-size: 1em;
 }
- 
+
 body {
   font: 100% sans-serif;
   margin: 0em;
@@ -17,7 +17,7 @@ h1, h2, h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
-.introduction {    
+.introduction {
   padding-top: 40px;
   margin-left: 250px;
 }
@@ -41,7 +41,7 @@ p {
 }
 img {
   max-width: 100%;
-  float: left; 
+  float: left;
 }
 
 hr {
@@ -53,7 +53,7 @@ hr {
 
 header {
   background-color: #999;
-  background-image: url(./images/IMG_4965.JPG);
+  background-image: url(IMG_4965.JPG);
   background-repeat: no-repeat;
   background-position: center center;
   -webkit-background-size: cover;
@@ -63,7 +63,7 @@ header {
   margin-bottom: 4em;
   text-align: center;
   height: 500px;
- 
+
 }
 
 header h1 {
@@ -123,12 +123,12 @@ footer hr {
   header {
     height: 700px;
   }
-  
+
   header h1 {
     font-size: 3.2em;
     top: 540px;
   }
-  
+
   header p {
     top: 530px;
     font-size: 1.5em;
@@ -150,7 +150,7 @@ footer hr {
   clear: both;
   margin-right: -1%;
   margin-left:  -1%;
-  
+
 }
 
 .row:before,
@@ -256,7 +256,3 @@ footer hr {
   color: #888;
   margin-top:  -15px;
 }
-
-
-
-
