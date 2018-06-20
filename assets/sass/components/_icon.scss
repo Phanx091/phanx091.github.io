@@ -1,5 +1,5 @@
 ///
-/// Hologram by Pixelarity
+/// Big Picture by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,27 +7,21 @@
 /* Icon */
 
 	.icon {
-		@include icon;
-		border-bottom: none;
-		position: relative;
+		text-decoration: none;
+
+		&:before {
+			display: inline-block;
+			font-family: FontAwesome;
+			font-size: 1.25em;
+			text-decoration: none;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
 
 		> .label {
 			display: none;
-		}
-
-		&.style1 {
-			color: _palette(accent1, fg-light);
-		}
-
-		&.style2 {
-			color: _palette(accent2, fg-light);
-		}
-
-		&.style3 {
-			color: _palette(accent3, fg-light);
-		}
-
-		&.style4 {
-			color: _palette(accent4, fg-light);
 		}
 	}

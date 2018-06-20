@@ -1,96 +1,216 @@
-
+/*
+	Big Picture by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+*/
 
 (function($) {
 
 	var	$window = $(window),
 		$body = $('body'),
-		$header = $('#header');
-
-		// dial animation 
-		var $randomnbr = $('.nbr');
-		var $timer= 10;
-		var $it;
-		var $data = 0;
-		var index;
-		var change;
-		var letters = ["T", "H", "I", "N", "G", "S"];
-		
-		$randomnbr.each(function(){
-			
-		  change = Math.round(Math.random()*100);
-		  $(this).attr('data-change', change);
-		  
-		});
-		
-		function random(){
-		  return Math.round(Math.random()*9);
-		};
-		
-		function select(){
-		  return Math.round(Math.random()*$randomnbr.length+1);
-		};
-		
-		function value(){
-		  $('.nbr:nth-child('+select()+')').html(''+random()+'');
-		  $('.nbr:nth-child('+select()+')').attr('data-number', $data);
-		  $data++;
-		  
-		  $randomnbr.each(function(){
-			  if(parseInt($(this).attr('data-number')) > parseInt($(this).attr('data-change'))){
-				index = $('.ltr').index(this);
-				$(this).html(letters[index]);
-				$(this).removeClass('nbr');
-			  }
-		  });
-		  
-		};
-		
-		$it = setInterval(value, $timer);
-
-
+		$header = $('#header'),
+		$all = $body.add($header);
 
 	// Breakpoints.
 		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ]
+			xxlarge: [ '1681px',  '1920px' ],
+			xlarge:  [ '1281px',  '1680px' ],
+			large:   [ '1001px',  '1280px' ],
+			medium:  [ '737px',   '1000px' ],
+			small:   [ '481px',   '736px'  ],
+			xsmall:  [ null,      '480px'  ]
 		});
 
 	// Play initial animations on page load.
 		$window.on('load', function() {
-			window.setTimeout(function() {
+			setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
 		});
 
-	// Scrolly.
-		$('.scrolly').scrolly({
-			offset: function() { return $header.outerHeight() }
+	// Touch mode.
+		if (browser.mobile)
+			$body.addClass('is-touch');
+
+		breakpoints.on('<=small', function() {
+			$body.addClass('is-touch');
 		});
 
-	// Menu.
-		$('#menu')
-			.append('<a href="#menu" class="close"></a>')
-			.appendTo($body)
-			.panel({
-				delay: 500,
-				hideOnClick: true,
-				hideOnSwipe: true,
-				resetScroll: true,
-				resetForms: true,
-				side: 'right'
+		breakpoints.on('>small', function() {
+			$body.removeClass('is-touch');
+		});
+
+	// Fix: IE flexbox fix.
+		if (browser.name == 'ie') {
+
+			var $main = $('.main.fullscreen'),
+				IEResizeTimeout;
+
+			$window
+				.on('resize.ie-flexbox-fix', function() {
+
+					clearTimeout(IEResizeTimeout);
+
+					IEResizeTimeout = setTimeout(function() {
+
+						var wh = $window.height();
+
+						$main.each(function() {
+
+							var $this = $(this);
+
+							$this.css('height', '');
+
+							if ($this.height() <= wh)
+								$this.css('height', (wh - 50) + 'px');
+
+						});
+
+					});
+
+				})
+				.triggerHandler('resize.ie-flexbox-fix');
+
+		}
+
+	// Gallery.
+		$window.on('load', function() {
+
+			var $gallery = $('.gallery');
+
+			$gallery.poptrox({
+				baseZIndex: 10001,
+				useBodyOverflow: false,
+				usePopupEasyClose: false,
+				overlayColor: '#1f2328',
+				overlayOpacity: 0.65,
+				usePopupDefaultStyling: false,
+				usePopupCaption: true,
+				popupLoaderText: '',
+				windowMargin: 50,
+				usePopupNav: true
 			});
 
-	// Header.
-		$window.on('resize', function() { $window.trigger('scroll'); });
+			// Hack: Adjust margins when 'small' activates.
+				breakpoints.on('>small', function() {
+					$gallery.each(function() {
+						$(this)[0]._poptrox.windowMargin = 50;
+					});
+				});
 
-		$body.scrollex({
-			top:		'25vh',
-			mode:		'top',
-			enter:		function() { $header.addClass('alt'); },
-			leave:		function() { $header.removeClass('alt'); }
+				breakpoints.on('<=small', function() {
+					$gallery.each(function() {
+						$(this)[0]._poptrox.windowMargin = 5;
+					});
+				});
+
 		});
+
+	// Section transitions.
+		if (browser.canUse('transition')) {
+
+			var on = function() {
+
+				// Galleries.
+					$('.gallery')
+						.scrollex({
+							top:		'30vh',
+							bottom:		'30vh',
+							delay:		50,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
+
+				// Generic sections.
+					$('.main.style1')
+						.scrollex({
+							mode:		'middle',
+							delay:		100,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
+
+					$('.main.style2')
+						.scrollex({
+							mode:		'middle',
+							delay:		100,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
+
+				// Contact.
+					$('#contact')
+						.scrollex({
+							top:		'50%',
+							delay:		50,
+							initialize:	function() { $(this).addClass('inactive'); },
+							terminate:	function() { $(this).removeClass('inactive'); },
+							enter:		function() { $(this).removeClass('inactive'); },
+							leave:		function() { $(this).addClass('inactive'); }
+						});
+
+			};
+
+			var off = function() {
+
+				// Galleries.
+					$('.gallery')
+						.unscrollex();
+
+				// Generic sections.
+					$('.main.style1')
+						.unscrollex();
+
+					$('.main.style2')
+						.unscrollex();
+
+				// Contact.
+					$('#contact')
+						.unscrollex();
+
+			};
+
+			breakpoints.on('<=small', off);
+			breakpoints.on('>small', on);
+
+		}
+
+	// Events.
+		var resizeTimeout, resizeScrollTimeout;
+
+		$window
+			.on('resize', function() {
+
+				// Disable animations/transitions.
+					$body.addClass('is-resizing');
+
+				clearTimeout(resizeTimeout);
+
+				resizeTimeout = setTimeout(function() {
+
+					// Update scrolly links.
+						$('a[href^="#"]').scrolly({
+							speed: 1500,
+							offset: $header.outerHeight() - 1
+						});
+
+					// Re-enable animations/transitions.
+						setTimeout(function() {
+							$body.removeClass('is-resizing');
+							$window.trigger('scroll');
+						}, 0);
+
+				}, 100);
+
+			})
+			.on('load', function() {
+				$window.trigger('resize');
+			});
 
 })(jQuery);

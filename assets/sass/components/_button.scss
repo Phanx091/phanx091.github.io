@@ -1,108 +1,80 @@
 ///
-/// Hologram by Pixelarity
+/// Big Picture by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
 
 /* Button */
 
+	input[type="button"],
 	input[type="submit"],
 	input[type="reset"],
-	input[type="button"],
-	button,
-	.button {
+	.button,
+	button {
 		@include vendor('appearance', 'none');
-		@include vendor('transition', 'background-color #{_duration(transition)} ease-in-out, color #{_duration(transition)} ease-in-out');
-		border-radius: _size(border-radius);
-		border: solid _size(border-width);
+		@include vendor('transition', 'background-color #{_duration(transition)} ease-in-out');
+		background-color: _palette(accent1, bg);
+		border: 0;
+		border-radius: 3.5em;
+		color: _palette(accent1, fg);
 		cursor: pointer;
 		display: inline-block;
-		font-size: 0.75em;
-		font-weight: _font(weight-bold);
-		height: 3.7em;
-		letter-spacing: 0.13em;
-		line-height: 3.6em;
-		padding: 0 2.9em;
+		height: 3.5em;
+		line-height: 3.5em;
+		outline: 0;
+		padding: 0 2em 0 2em;
+		position: relative;
 		text-align: center;
 		text-decoration: none;
-		text-transform: uppercase;
-		white-space: nowrap;
 
-		&.icon {
-			border-bottom: solid _size(border-width);
+		&.down {
+			width: 5em;
+			height: 5em;
+			line-height: 4.5em;
+			padding: 0;
+			background-image: url('images/dark-arrow.svg');
+			background-position: center center;
+			background-repeat: no-repeat;
+			text-indent: -10em;
+			overflow: hidden;
 
-			&:before {
-				margin-right: 0.5em;
+			&.anchored {
+				bottom: 0;
+				border-bottom: 0;
+				border-radius: 3em 3em 0 0;
+				height: 4.5em;
+				margin-left: -2.5em;
 			}
 		}
 
-		&.fit {
-			width: 100%;
+		&.anchored {
+			position: absolute;
+			left: 50%;
 		}
 
-		&.small {
-			font-size: 0.6em;
+		&:hover {
+			background-color: lighten(_palette(accent1, bg), 5);
 		}
 
-		&.large {
-			font-size: 1.35em;
-			height: 3em;
-			line-height: 2.9em;
+		&:active {
+			background-color: darken(_palette(accent1, bg), 5);
 		}
 
-		&.disabled,
-		&:disabled {
-			@include vendor('pointer-events', 'none');
-			opacity: 0.25;
-		}
-
-		@include breakpoint('<=xsmall') {
-			padding: 0;
-		}
-	}
-
-	@mixin color-button($p: null) {
-		$highlight: _palette($p, highlight);
-
-		input[type="submit"],
-		input[type="reset"],
-		input[type="button"],
-		button,
-		.button {
+		&.style2 {
 			background-color: transparent;
-			border-color: _palette($p, border);
-			color: _palette($p, fg-bold) !important;
+			border: solid 2px _palette(border);
+			color: inherit;
 
 			&:hover {
-				background-color: _palette($p, border-bg);
+				background-color: transparentize(_palette(border), 0.75);
 			}
 
 			&:active {
-				background-color: _palette($p, border2-bg);
+				background-color: transparentize(_palette(border), 0.625);
 			}
 
-			&.icon {
-				border-bottom-color: _palette($p, border);
-
-				&:before {
-					color: _palette($p, fg-light);
-				}
-			}
-
-			&.primary {
-				background-color: _palette($p, fg);
-				border-color: transparent;
-				color: _palette($p, bg) !important;
-
-				&:hover {
-					background-color: lighten(_palette($p, fg), 7.5);
-				}
-
-				&:active {
-					background-color: darken(_palette($p, fg), 7.5);
-				}
+			&.down {
+				background-image: url('images/arrow.svg');
 			}
 		}
 	}
-
-	@include color-button;

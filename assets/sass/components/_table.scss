@@ -1,114 +1,38 @@
 ///
-/// Hologram by Pixelarity
+/// Big Picture by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
 
 /* Table */
 
-	.table-wrapper {
-		-webkit-overflow-scrolling: touch;
-		overflow-x: auto;
-	}
-
 	table {
-		margin: 0 0 _size(element-margin) 0;
 		width: 100%;
 
-		tbody {
-			tr {
-				border: solid _size(border-width);
-				border-left: 0;
-				border-right: 0;
-			}
-		}
+		&.default {
+			width: 100%;
 
-		td {
-			padding: 0.75em 0.75em;
-		}
-
-		th {
-			font-size: 0.9em;
-			font-weight: _font(weight-bold);
-			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
-		}
-
-		thead {
-			border-bottom: solid _size(border-width);
-		}
-
-		tfoot {
-			border-top: solid _size(border-width);
-		}
-
-		&.alt {
-			border-collapse: separate;
-
-			tbody {
-				tr {
-					td {
-						border: solid _size(border-width);
-						border-left-width: 0;
-						border-top-width: 0;
-
-						&:first-child {
-							border-left-width: _size(border-width);
-						}
-					}
-
-					&:first-child {
-						td {
-							border-top-width: _size(border-width);
-						}
-					}
-				}
+			tbody tr:nth-child(2n+2) {
+				background: transparentize(_palette(border), 0.5);
 			}
 
-			thead {
-				border-bottom: 0;
-			}
-
-			tfoot {
-				border-top: 0;
-			}
-		}
-	}
-
-	@mixin color-table($p: null) {
-		table {
-			tbody {
-				tr {
-					border-color: _palette($p, border);
-
-					&:nth-child(2n + 1) {
-						background-color: _palette($p, border-bg);
-					}
-				}
+			td {
+				padding: 0.5em 1em 0.5em 1em;
 			}
 
 			th {
-				color: _palette($p, fg-bold);
+				text-align: left;
+				font-weight: 900;
+				padding: 0.5em 1em 0.5em 1em;
 			}
 
 			thead {
-				border-bottom-color: _palette($p, border);
+				background: _palette(fg);
+				color: _palette(bg);
 			}
 
 			tfoot {
-				border-top-color: _palette($p, border);
-			}
-
-			&.alt {
-				tbody {
-					tr {
-						td {
-							border-color: _palette($p, border);
-						}
-					}
-				}
+				background: _palette(border);
 			}
 		}
 	}
-
-	@include color-table;

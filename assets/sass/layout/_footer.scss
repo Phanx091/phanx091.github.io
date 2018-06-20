@@ -1,5 +1,5 @@
 ///
-/// Hologram by Pixelarity
+/// Big Picture by Pixelarity
 /// pixelarity.com | hello@pixelarity.com
 /// License: pixelarity.com/license
 ///
@@ -7,39 +7,68 @@
 /* Footer */
 
 	#footer {
-		@include padding(4em, 0);
-		text-align: center;
+		@include vendor('display', 'flex');
+		@include vendor('align-items', 'center');
+		@include vendor('justify-content', 'space-between');
+		position: relative;
+		margin: 0;
+		line-height: 1em;
+		padding: 1.5em;
+		background: _palette(accent3, bg);
+		color: _palette(accent3, fg);
+		overflow: hidden;
 
-		.alt-icons {
-			margin-bottom: 3.5em;
+		> * {
+			margin-bottom: 0;
 		}
 
-		.menu {
-			font-size: 0.8em;
-			margin-bottom: 1.1em;
+		a {
+			color: inherit;
 
-			a {
-				color: _palette(fg-light);
+			&:hover {
+				color: _palette(accent3, fg-bold);
 			}
 		}
 
-		.copyright {
-			color: _palette(fg-light);
-			font-size: 0.8em;
+		ul {
+			&.menu {
+				margin: 0;
+
+				li {
+					border-left-color: _palette(accent3, border);
+					font-size: 0.9em;
+				}
+			}
+		}
+
+		@include breakpoint('<=medium') {
+			@include vendor('flex-direction', 'column');
+			@include vendor('justify-content', 'center');
+			line-height: 1.5em;
 			text-align: center;
-		}
+			padding: 2em 1em 2em 1em;
 
-		@include breakpoint('<=large') {
-			.menu {
-				font-size: 0.9em;
-			}
-
-			.copyright {
-				font-size: 0.9em;
+			> * {
+				margin: 0 0 1em 0;
 			}
 		}
 
-		@include breakpoint('<=xsmall') {
-			@include padding(3em, 1.5em);
+		@include breakpoint('<=small') {
+			ul {
+				&.menu {
+					li {
+						border-left: none;
+						display: block;
+						line-height: inherit;
+						margin: 0.25em 0 0 0;
+						padding: 0.25em 0 0 0;
+
+						&:first-child {
+							margin-top: 0;
+							padding-top: 0;
+						}
+					}
+				}
+			}
 		}
 	}
